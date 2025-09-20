@@ -1,9 +1,24 @@
 #!/bin/bash
 
+# Check which Python is available
+function check_python() {
+  if command -v python3 &> /dev/null; then
+    PYTHON_CMD="python3"
+  elif command -v python &> /dev/null; then
+    PYTHON_CMD="python"
+  elif command -v py &> /dev/null; then
+    PYTHON_CMD="py"
+  else
+    echo "Error: Python is not installed or available in the PATH."
+    exit 1
+  fi
+}
+check_python
+
 # Create the virtual environment if it doesn't exist
 if [ ! -d ".venv" ]; then
   echo "Creating virtual environment..."
-  py -m venv .venv
+  $PYTHON_CMD -m venv .venv
 fi
 
 # Ensure the virtual environment was created
