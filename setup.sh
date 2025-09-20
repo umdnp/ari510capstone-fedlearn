@@ -3,7 +3,7 @@
 # Create the virtual environment if it doesn't exist
 if [ ! -d ".venv" ]; then
   echo "Creating virtual environment..."
-  python -m venv .venv
+  py -m venv .venv
 fi
 
 # Ensure the virtual environment was created
@@ -27,7 +27,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ] || [ "$(expr substr $(uname
     echo "Error: .venv/Scripts/activate.bat does not exist."
     exit 1
   fi
-  ln -sf .venv/Scripts/activate.bat activate
+  ln -sf .venv/Scripts/activate activate
+  ln -sf .venv/Scripts/activate.bat activate.bat
   echo "Symlink for activation created: .venv/Scripts/activate.bat"
 else
   echo "Error: Unsupported operating system."
