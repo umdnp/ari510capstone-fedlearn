@@ -1,3 +1,6 @@
-pandas
-pandas-stubs
-scikit-learn
+flwr[simulation]==1.21.0
+mypy==1.18.2
+pandas==2.3.2
+pandas-stubs==2.3.2.250827
+scikit-learn==1.7.2
+torch==2.8.0
