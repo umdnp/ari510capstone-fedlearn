@@ -1,7 +1,18 @@
-duckdb==1.4.1
-flwr[simulation]==1.21.0
+# Core
 mypy==1.18.2
+
+# Data libraries
+duckdb==1.4.1
+numpy==2.2.2
 pandas==2.3.2
 pandas-stubs==2.3.2.250827
+polars==1.33.1
+xlsxwriter==3.2.8
+
+# Data science 
 scikit-learn==1.7.2
 torch==2.8.0
+flwr[simulation]==1.21.0
+
+# Data Viz
+altair==5.5.0
