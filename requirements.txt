@@ -1,3 +1,4 @@
+duckdb==1.4.1
 flwr[simulation]==1.21.0
 mypy==1.18.2
 pandas==2.3.2
