@@ -3,7 +3,7 @@ name = "ari510capstone-fedlearn"
 version = "0.1.0"
 description = "ARI 510 Capstone - Federated Learning"
 authors = [
-    {name = "University of Michigan Team"}
+    {name = "Jim Prantzalos and Jamie Ontiveros"}
 ]
 readme = "README.md"
 requires-python = ">=3.11,<4.0"
