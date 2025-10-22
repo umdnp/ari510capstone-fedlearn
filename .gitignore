@@ -212,3 +212,10 @@ __marimo__/
 # Convenience links
 activate
 activate.bat
+
+# Data files - too large for git
+data/
+
+# Model outputs and experiment results
+models/
+results/
