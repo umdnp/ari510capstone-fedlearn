@@ -17,3 +17,5 @@ torch==2.9.0
 
 # Data Viz
 altair==5.5.0
+matplotlib==3.9.4
+seaborn==0.13.2
