@@ -3,10 +3,6 @@
 create or replace view v_features_apache_pred as
 select
     patientunitstayid,
-    max(gender)              as apache_gender_code,
-    max(age)                 as apache_age_years,
-    max(teachtype)           as apache_teachtype,
-    max(region)              as apache_region_code,
     max(bedcount)            as apache_bedcount,
     max(admitsource)         as apache_admitsource_code,
     max(diabetes)            as apache_diabetes,

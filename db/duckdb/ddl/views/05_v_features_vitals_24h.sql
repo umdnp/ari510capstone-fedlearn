@@ -31,14 +31,6 @@ select
     -- Oxygen saturation
     avg(sao2)          as avg_sao2_24h,
     min(sao2)          as min_sao2_24h,
-    max(sao2)          as max_sao2_24h,
-
-    -- Blood pressure
-    avg(systemicsystolic)   as avg_sysbp_24h,
-    avg(systemicdiastolic)  as avg_diabp_24h,
-    avg(systemicmean)       as avg_meanbp_24h,
-
-    -- Temperature
-    avg(temperature)   as avg_temp_24h
+    max(sao2)          as max_sao2_24h
 from vitals_24h
 group by patientunitstayid;

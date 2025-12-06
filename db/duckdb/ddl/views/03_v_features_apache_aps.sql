@@ -22,6 +22,9 @@ select
     avg(bun)            as apache_bun,
     avg(glucose)        as apache_glucose,
     avg(bilirubin)      as apache_bilirubin,
+    avg(eyes)           as apache_gcs_eyes,
+    avg(verbal)         as apache_gcs_verbal,
+    avg(motor)          as apache_gcs_motor,
     avg(fio2)           as apache_fio2
 from apacheapsvar
 group by patientunitstayid;

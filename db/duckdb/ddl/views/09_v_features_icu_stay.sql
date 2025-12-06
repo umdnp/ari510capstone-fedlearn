@@ -17,6 +17,7 @@ select
     p.unitvisitnumber,
     p.hospitaladmitsource,
     p.apacheadmissiondx,
+    p.admissiondx_category,
     p.numbedscategory,
     p.teachingstatus,
     p.hospital_region,
@@ -41,13 +42,12 @@ select
     a_aps.apache_bun,
     a_aps.apache_glucose,
     a_aps.apache_bilirubin,
+    a_aps.apache_gcs_eyes,
+    a_aps.apache_gcs_verbal,
+    a_aps.apache_gcs_motor,
     a_aps.apache_fio2,
 
     -- APACHE predictors
-    a_pred.apache_gender_code,
-    a_pred.apache_age_years,
-    a_pred.apache_teachtype,
-    a_pred.apache_region_code,
     a_pred.apache_bedcount,
     a_pred.apache_admitsource_code,
     a_pred.apache_diabetes,
@@ -74,17 +74,12 @@ select
     v.avg_sao2_24h,
     v.min_sao2_24h,
     v.max_sao2_24h,
-    v.avg_sysbp_24h,
-    v.avg_diabp_24h,
-    v.avg_meanbp_24h,
-    v.avg_temp_24h,
 
     -- Labs 24h
     l.creatinine_mean_24h,
     l.creatinine_max_24h,
     l.wbc_mean_24h,
     l.glucose_mean_24h,
-    l.bilirubin_mean_24h,
 
     -- Resp features
     r.vent_started_24h,

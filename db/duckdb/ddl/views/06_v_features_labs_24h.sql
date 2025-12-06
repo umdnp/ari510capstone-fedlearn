@@ -27,8 +27,6 @@ select
     -- Glucose
     avg(case when labname like '%glucose%' then labresult end) as glucose_mean_24h,
 
-    -- Bilirubin
-    avg(case when labname like '%bilirubin%' then labresult end) as bilirubin_mean_24h
 
 from labs_24h
 group by patientunitstayid;
