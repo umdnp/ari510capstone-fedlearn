@@ -1,21 +1,21 @@
-# Core
-mypy==1.18.2
+# core
+mypy==1.19.0
 
-# Data libraries
-duckdb==1.4.1
-numpy==2.3.4
+# data libraries
+duckdb==1.4.2
+numpy==2.3.5
 pandas==2.3.3
-pandas-stubs==2.3.2.250926
-polars==1.34.0
+pandas-stubs==2.3.3.251201
+polars==1.35.2
 
-# Data science 
-ipykernel==7.0.1
-jupyterlab==4.4.9
-flwr[simulation]==1.22.0
+# data science
+ipykernel==7.1.0
+jupyterlab==4.5.0
+flwr[simulation]==1.24.0
 scikit-learn==1.7.2
-torch==2.9.0
+torch==2.9.1
 
-# Data Viz
-altair==5.5.0
-matplotlib==3.9.4
+# data viz
+altair==6.0.0
+matplotlib==3.10.7
 seaborn==0.13.2
