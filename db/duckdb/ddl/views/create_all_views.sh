@@ -11,3 +11,4 @@ duckdb "$DB_PATH" < 06_v_features_labs_24h.sql
 duckdb "$DB_PATH" < 07_v_features_resp_24h.sql
 duckdb "$DB_PATH" < 08_v_features_infusions_24h.sql
 duckdb "$DB_PATH" < 09_v_features_icu_stay.sql
+duckdb "$DB_PATH" < 10_v_features_icu_stay_clean.sql
