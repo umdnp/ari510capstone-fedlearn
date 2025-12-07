@@ -1,4 +1,5 @@
 import duckdb
+import numpy as np
 import pandas as pd
 
 from sklearn.model_selection import train_test_split
@@ -13,6 +14,9 @@ from fedlearn.evaluation import evaluate_model
 # load data
 conn = duckdb.connect("../data/duckdb/fedlearn.duckdb")
 df = conn.execute("select * from v_features_icu_stay_clean").df()
+
+# normalize pandas.NA to np.nan so sklearn's SimpleImputer can handle it
+df = df.replace({pd.NA: np.nan})
 
 y = df["prolonged_stay"]
 X = df.drop(
