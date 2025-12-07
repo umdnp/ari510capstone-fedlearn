@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from time import perf_counter
 from typing import Any, Mapping, Dict
 
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
@@ -45,6 +46,10 @@ def evaluate_model(
         A mapping with train_* and test_* metrics.
     """
     # train
+    t0 = perf_counter()
+    model.fit(X_train, y_train)
+    train_time = perf_counter() - t0
+
     model.fit(X_train, y_train)
 
     # predict on train and test
@@ -60,16 +65,17 @@ def evaluate_model(
     )
 
     # combine in a single dict
-    metrics = {
-        f"train_{k}": v for k, v in train_metrics.items()
+    metrics: Dict[str, float] = {
+        "train_time": float(train_time),
+        **{f"train_{k}": v for k, v in train_metrics.items()},
+        **{f"test_{k}": v for k, v in test_metrics.items()},
     }
-    metrics.update({
-        f"test_{k}": v for k, v in test_metrics.items()
-    })
+
 
     if verbose:
         print(f"{name}")
         print("-" * 40)
+        print(f"Train time: {train_time:.3f}s")
         print("Train set:")
         print(f"  Accuracy  : {train_metrics['accuracy']:.4f}")
         print(f"  Precision : {train_metrics['precision']:.4f}")
