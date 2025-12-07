@@ -31,7 +31,7 @@ def build_preprocessor(df) -> ColumnTransformer:
 
     categorical_transformer = Pipeline([
         ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("onehot", OneHotEncoder(handle_unknown="ignore", sparse_output=True)),
+        ("onehot", OneHotEncoder(handle_unknown="ignore")),
     ])
 
     preprocessor = ColumnTransformer(
@@ -52,12 +52,10 @@ X = df.drop(columns=["patientunitstayid", "los_days", "prolonged_stay", "apachea
 logreg = Pipeline([
     ("preprocessor", build_preprocessor(X)),
     ("classifier", LogisticRegression(
-        max_iter=1000,
-        C=0.1,
+        max_iter=500,
         n_jobs=-1,
         class_weight="balanced",
-        solver="saga",
-        penalty="l2",
+        solver="lbfgs",
         random_state=42,
     )),
 ])
