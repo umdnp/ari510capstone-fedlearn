@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.preprocessing import OneHotEncoder, StandardScaler, RobustScaler
 from sklearn.linear_model import LogisticRegression
 
 from fedlearn.evaluation import evaluate_model
@@ -29,6 +29,8 @@ categorical_features = [
     "numbedscategory",
     "teachingstatus",
     "hospital_region",
+    "apache_admitsource_code",
+    "age_group",
 ]
 
 numeric_features = [c for c in X.columns if c not in categorical_features]
@@ -38,7 +40,7 @@ numeric_features = [c for c in X.columns if c not in categorical_features]
 numeric_transformer = Pipeline(
     steps=[
         ("imputer", SimpleImputer(strategy="median")),
-        ("scaler", StandardScaler()),
+        ("scaler", RobustScaler()),
     ]
 )
 

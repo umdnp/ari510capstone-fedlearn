@@ -13,15 +13,39 @@ select
         else try_cast(age as integer)
     end as age_numeric,
 
+    -- derived age group (categorical)
+    case 
+        when age = '> 89' or age = '>89' then 'elderly'
+        else case 
+            when try_cast(age as integer) < 40 then 'young'
+            when try_cast(age as integer) < 60 then 'middle'
+            when try_cast(age as integer) < 80 then 'older'
+            else 'elderly'
+        end
+    end as age_group,
+
     -- patient-level
     coalesce(lower(trim(gender)), 'unknown') as gender,
     ethnicity,
     admissionheight,
     admissionweight,
+    case 
+        when admissionheight is not null 
+             and admissionweight is not null 
+             and admissionheight > 0
+        then admissionweight / power(admissionheight / 100.0, 2)
+        else null
+    end as bmi,
     unittype,
     unitadmitsource,
     unitvisitnumber,
     hospitaladmitsource,
+    case 
+        when lower(coalesce(unitadmitsource, '')) like '%emergency%'
+          or lower(coalesce(hospitaladmitsource, '')) like '%emergency%'
+        then 1
+        else 0
+    end as emergency_admit,
     apacheadmissiondx,
     admissiondx_category,
     numbedscategory,
@@ -48,6 +72,7 @@ select
     apache_gcs_eyes,
     apache_gcs_verbal,
     apache_gcs_motor,
+    apache_gcs_eyes + apache_gcs_verbal + apache_gcs_motor as apache_gcs_total,
 
     -- APACHE missingness flags
     case when apache_gcs_eyes      is null then 1 else 0 end as is_missing_gcs_eyes,
@@ -96,20 +121,69 @@ select
     min_sao2_24h,
     max_sao2_24h,
 
+    -- Vitals ranges
+    max_hr_24h - min_hr_24h       as hr_range_24h,
+    max_rr_24h - min_rr_24h       as rr_range_24h,
+    max_sao2_24h - min_sao2_24h   as sao2_range_24h,
+
+    -- Critical vital sign flags
+    case
+        when min_hr_24h is not null and min_hr_24h < 40 then 1
+        else 0
+    end as had_bradycardia_24h,
+    case
+        when max_hr_24h is not null and max_hr_24h > 130 then 1
+        else 0
+    end as had_tachycardia_24h,
+    case
+        when min_sao2_24h is not null and min_sao2_24h < 90 then 1
+        else 0
+    end as had_hypoxemia_24h,
+
     -- Labs 24h
     creatinine_mean_24h,
     creatinine_max_24h,
     wbc_mean_24h,
     glucose_mean_24h,
 
+    -- Renal function change
+    case
+        when apache_creatinine   is not null
+         and creatinine_mean_24h is not null
+        then creatinine_mean_24h - apache_creatinine
+        else null
+    end as creatinine_change_24h,
+    case
+        when apache_creatinine   is not null
+         and creatinine_mean_24h is not null
+         and apache_creatinine > 0
+         and (creatinine_mean_24h - apache_creatinine) / apache_creatinine > 0.5
+        then 1
+        else 0
+    end as has_aki_24h,
+
     -- Resp features
     vent_started_24h,
-    ever_vented,
 
     -- Infusion features
     pressor_norepi_24h,
     pressor_epi_24h,
     pressor_vaso_24h,
-    sedative_propofol_24h
+    sedative_propofol_24h,
+    case
+        when pressor_norepi_24h = 1
+          or pressor_epi_24h   = 1
+          or pressor_vaso_24h  = 1
+        then 1
+        else 0
+    end as any_pressor_24h,
+
+    -- Resp / infusion missingness flags
+    case when vent_started_24h       is null then 1 else 0 end as vent_started_24h_missing,
+    case when apache_electivesurgery is null then 1 else 0 end as apache_electivesurgery_missing,
+    case when pressor_norepi_24h     is null then 1 else 0 end as pressor_norepi_24h_missing,
+    case when pressor_epi_24h        is null then 1 else 0 end as pressor_epi_24h_missing,
+    case when pressor_vaso_24h       is null then 1 else 0 end as pressor_vaso_24h_missing,
+    case when sedative_propofol_24h  is null then 1 else 0 end as sedative_propofol_24h_missing
 
 from v_features_icu_stay;
