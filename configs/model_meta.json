@@ -1,0 +1,11 @@
+{
+  "n_features": 158,
+  "classes": [
+    0,
+    1
+  ],
+  "intercept": [
+    0.0,
+    0.0
+  ]
+}

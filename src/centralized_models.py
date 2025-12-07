@@ -1,14 +1,12 @@
 import duckdb
 import numpy as np
-from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, RobustScaler
 
 from fedlearn.evaluation import evaluate_model
+from src.fedlearn.preprocessing import build_preprocessor
 
 # load data
 conn = duckdb.connect("../data/duckdb/fedlearn.duckdb")
@@ -16,33 +14,6 @@ df = conn.execute("select * from v_features_icu_stay_clean").df()
 
 # normalize pandas.NA -> np.nan (so sklearn's SimpleImputer can handle it)
 df = df.where(df.notna(), np.nan)
-
-
-# preprocessing for logistic regression
-
-def build_preprocessor(df) -> ColumnTransformer:
-    numeric_features = df.select_dtypes(include=["number"]).columns
-    categorical_features = df.select_dtypes(exclude=["number"]).columns
-
-    numeric_transformer = Pipeline([
-        ("imputer", SimpleImputer(strategy="median")),
-        ("scaler", RobustScaler()),
-    ])
-
-    categorical_transformer = Pipeline([
-        ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("onehot", OneHotEncoder(handle_unknown="ignore")),
-    ])
-
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ("numerical", numeric_transformer, numeric_features),
-            ("categorical", categorical_transformer, categorical_features),
-        ],
-    )
-
-    return preprocessor
-
 
 # target and feature selection
 y = df["prolonged_stay"]
@@ -112,9 +83,9 @@ X_train, X_val, y_train, y_val = train_test_split(
 )
 
 print("Dataset split sizes:")
-print(f"  Training:   {len(X_train):,} samples ({len(X_train)/len(X)*100:.1f}%)")
-print(f"  Validation: {len(X_val):,} samples ({len(X_val)/len(X)*100:.1f}%)")
-print(f"  Test:       {len(X_test):,} samples ({len(X_test)/len(X)*100:.1f}%)")
+print(f"  Training:   {len(X_train):,} samples ({len(X_train) / len(X) * 100:.1f}%)")
+print(f"  Validation: {len(X_val):,} samples ({len(X_val) / len(X) * 100:.1f}%)")
+print(f"  Test:       {len(X_test):,} samples ({len(X_test) / len(X) * 100:.1f}%)")
 print()
 
 # fit + evaluate on validation set (for hyperparameter tuning)
