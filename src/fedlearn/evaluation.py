@@ -50,8 +50,6 @@ def evaluate_model(
     model.fit(X_train, y_train)
     train_time = perf_counter() - t0
 
-    model.fit(X_train, y_train)
-
     # predict on train and test
     y_pred_train = model.predict(X_train)
     y_pred_test = model.predict(X_test)
