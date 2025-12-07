@@ -39,24 +39,30 @@ select
     apache_sodium,
     apache_hr,
     apache_meanbp,
-    apache_ph,
     apache_hct,
     apache_creatinine,
     apache_albumin,
-    apache_pao2,
-    apache_pco2,
     apache_bun,
     apache_glucose,
     apache_bilirubin,
     apache_gcs_eyes,
     apache_gcs_verbal,
     apache_gcs_motor,
-    apache_fio2,
 
-    -- GCS missingness flags (for modeling)
-    case when apache_gcs_eyes   is null then 1 else 0 end as is_missing_gcs_eyes,
-    case when apache_gcs_verbal is null then 1 else 0 end as is_missing_gcs_verbal,
-    case when apache_gcs_motor  is null then 1 else 0 end as is_missing_gcs_motor,
+    -- APACHE missingness flags
+    case when apache_gcs_eyes      is null then 1 else 0 end as is_missing_gcs_eyes,
+    case when apache_gcs_verbal    is null then 1 else 0 end as is_missing_gcs_verbal,
+    case when apache_gcs_motor     is null then 1 else 0 end as is_missing_gcs_motor,
+    case when apache_albumin       is null then 1 else 0 end as apache_albumin_missing,
+    case when apache_bilirubin     is null then 1 else 0 end as apache_bilirubin_missing,
+    case when apache_urine_24h     is null then 1 else 0 end as apache_urine_24h_missing,
+    case when apache_wbc           is null then 1 else 0 end as apache_wbc_missing,
+    case when apache_temp          is null then 1 else 0 end as apache_temp_missing,
+    case when apache_sodium        is null then 1 else 0 end as apache_sodium_missing,
+    case when apache_creatinine    is null then 1 else 0 end as apache_creatinine_missing,
+    case when apache_hct           is null then 1 else 0 end as apache_hct_missing,
+    case when apache_bun           is null then 1 else 0 end as apache_bun_missing,
+    case when apache_glucose       is null then 1 else 0 end as apache_glucose_missing,
 
     -- APACHE predictors
     apache_bedcount,
@@ -74,6 +80,10 @@ select
     apache_ventday1,
     apache_oobventday1,
     apache_oobintubday1,
+
+    -- APACHE predictor missingness flags
+    case when apache_bedcount         is null then 1 else 0 end as apache_bedcount_missing,
+    case when apache_admitsource_code is null then 1 else 0 end as apache_admitsource_code_missing,
 
     -- Vitals 24h
     avg_hr_24h,

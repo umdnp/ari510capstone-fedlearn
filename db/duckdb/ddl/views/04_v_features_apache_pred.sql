@@ -3,8 +3,8 @@
 create or replace view v_features_apache_pred as
 select
     patientunitstayid,
-    max(bedcount)            as apache_bedcount,
-    max(admitsource)         as apache_admitsource_code,
+    max(nullif(bedcount, -1))            as apache_bedcount,
+    max(nullif(admitsource, -1))         as apache_admitsource_code,
     max(diabetes)            as apache_diabetes,
     max(aids)                as apache_aids,
     max(hepaticfailure)      as apache_hepaticfailure,
