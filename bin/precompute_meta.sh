@@ -5,4 +5,4 @@ PROJECT_DIR="$PWD"
 
 source "${PROJECT_DIR}/activate"
 
-python "${PROJECT_DIR}/src/precompute_model_metadata.py"
+python "${PROJECT_DIR}/src/compute_model_metadata.py"

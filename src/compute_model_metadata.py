@@ -1,23 +1,26 @@
 """
-Compute model metadata for the federated ICU model.
+Compute model metadata and save the fitted preprocessor.
 
 This script:
   - Loads data from DuckDB
-  - Applies the same preprocessing as the centralized model.
+  - Applies the same preprocessing as the centralized model
   - Computes:
       - n_features (after preprocessing)
       - classes (unique values of prolonged_stay)
       - intercept (zero vector of length n_classes)
-  - Saves everything to model_meta.json
+  - Saves:
+      - configs/model_meta.json
+      - configs/preprocessor.pkl
 
 Run:
-    python compute_model_meta.py
+    python compute_model_metadata.py
 """
 
 import json
 from pathlib import Path
 
 import duckdb
+import joblib
 import numpy as np
 
 from fedlearn.preprocessing import build_preprocessor
@@ -33,8 +36,8 @@ DROP_COLS = ["patientunitstayid", "los_days", "prolonged_stay", "apacheadmission
 SAMPLE_ROWS = 50000
 
 CONFIG_DIR = Path("configs")
-OUTPUT_JSON = CONFIG_DIR / "model_meta.json"
-
+META_PATH = CONFIG_DIR / "model_meta.json"
+PREPROC_PATH = CONFIG_DIR / "preprocessor.pkl"
 
 def main():
     # Ensure config directory exists
@@ -88,9 +91,12 @@ def main():
         "intercept": intercept,
     }
 
-    print(f"Saving model metadata to {OUTPUT_JSON}")
-    with OUTPUT_JSON.open("w", encoding="utf-8") as f:
+    print(f"Saving model metadata to {META_PATH}")
+    with META_PATH.open("w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2)
+
+    print(f"Saving fitted preprocessor to {PREPROC_PATH}")
+    joblib.dump(preprocessor, PREPROC_PATH)
 
     print("Done!")
 
