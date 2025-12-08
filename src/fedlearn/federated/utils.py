@@ -8,7 +8,7 @@ from sklearn.linear_model import SGDClassifier
 
 # Constants
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 META_PATH = PROJECT_ROOT / "configs" / "model_meta.json"
 
 with META_PATH.open("r", encoding="utf-8") as f:
