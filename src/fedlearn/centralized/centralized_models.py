@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import duckdb
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
@@ -8,11 +10,16 @@ from sklearn.pipeline import Pipeline
 from fedlearn.common.evaluation import evaluate_model
 from fedlearn.common.preprocessing import build_preprocessor
 
-# load data
-conn = duckdb.connect("../../../data/duckdb/fedlearn.duckdb")
-df = conn.execute("select * from v_features_icu_stay_clean").df()
+# Constants
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+DUCKDB_PATH = PROJECT_ROOT / "data" / "duckdb" / "fedlearn.duckdb"
+VIEW_NAME = "v_features_icu_stay_clean"
 
-# normalize pandas.NA -> np.nan (so sklearn's SimpleImputer can handle it)
+# load data
+conn = duckdb.connect(DUCKDB_PATH, read_only=True)
+df = conn.execute(f"SELECT * FROM {VIEW_NAME}").df()
+
+# normalize pandas.NA -> np.nan so sklearn imputers are happy
 df = df.where(df.notna(), np.nan)
 
 # target and feature selection

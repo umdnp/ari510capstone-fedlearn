@@ -27,17 +27,19 @@ from fedlearn.common.preprocessing import build_preprocessor
 
 # Constants
 
-DUCKDB_PATH = "data/duckdb/fedlearn.duckdb"
 SOURCE_TABLE = "v_features_icu_stay_clean"
-
 DROP_COLS = ["patientunitstayid", "los_days", "prolonged_stay", "apacheadmissiondx"]
 
 # number of rows to sample for computing feature dimension
 SAMPLE_ROWS = 50000
 
-CONFIG_DIR = Path("configs")
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+DUCKDB_PATH = PROJECT_ROOT / "data" / "duckdb" / "fedlearn.duckdb"
+
+CONFIG_DIR = PROJECT_ROOT / "configs"
 META_PATH = CONFIG_DIR / "model_meta.json"
 PREPROC_PATH = CONFIG_DIR / "preprocessor.pkl"
+
 
 def main():
     # Ensure config directory exists
