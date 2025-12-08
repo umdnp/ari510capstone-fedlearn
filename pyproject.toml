@@ -1,16 +1,30 @@
 [project]
 name = "ari510capstone-fedlearn"
-version = "0.1.0"
 description = "ARI 510 Capstone - Federated Learning"
-authors = [
-    {name = "Jim Prantzalos and Jamie Ontiveros"}
-]
+version = "0.1.0"
+requires-python = ">=3.12,<4.0"
+authors = [{name = "Jim Prantzalos and Jamie Ontiveros"}]
 readme = "README.md"
-requires-python = ">=3.11,<4.0"
 dependencies = [
+    "flwr[simulation]==1.24.0",
 ]
 
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["fedlearn"]
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.flwr.app]
+publisher = "umich"
+name = "ari510capstone-fedlearn"
+
+[tool.flwr.app.components]
+clientapp = "fedlearn.federated.client:app"
+serverapp = "fedlearn.federated.server:app"
+
+[tool.flwr.app.config]
+#ServerApp
+num-server-rounds = 5
+penalty = "l2"
+local-epochs = 1
+fraction-train = 1.0
+fraction-evaluate = 1.0

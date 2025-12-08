@@ -5,11 +5,11 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
-from fedlearn.evaluation import evaluate_model
-from src.fedlearn.preprocessing import build_preprocessor
+from fedlearn.common.evaluation import evaluate_model
+from fedlearn.common.preprocessing import build_preprocessor
 
 # load data
-conn = duckdb.connect("../data/duckdb/fedlearn.duckdb")
+conn = duckdb.connect("../../../data/duckdb/fedlearn.duckdb")
 df = conn.execute("select * from v_features_icu_stay_clean").df()
 
 # normalize pandas.NA -> np.nan (so sklearn's SimpleImputer can handle it)
