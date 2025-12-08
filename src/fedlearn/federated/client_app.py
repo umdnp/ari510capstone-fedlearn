@@ -1,20 +1,38 @@
 from flwr.app import Context
 from flwr.clientapp import ClientApp
-from flwr.common import Message
+from flwr.common import Message, ArrayRecord, MetricRecord, RecordDict
 
 app = ClientApp()
 
 
 @app.train()
 def train(message: Message, context: Context) -> Message:
-    """
-    Temporary stub train function.
-    """
-    print("Stub train() called")
-    print("Incoming message_type:", message)
+    incoming_arrays: ArrayRecord = message.content["arrays"]
 
-    # for now, just echo the content back unchanged
-    return Message(message.content, reply_to=message)
+    # for a stub, just echo the same parameters back
+    updated_arrays = incoming_arrays
+
+    metrics = MetricRecord(
+        {
+            "num-examples": 0.0,
+            "loss": 0.0,
+        }
+    )
+
+    # build the reply
+    reply_content = RecordDict(
+        {
+            "arrays": updated_arrays,
+            "metrics": metrics,
+        }
+    )
+
+    reply_message = Message(
+        content=reply_content,
+        reply_to=message,
+    )
+
+    return reply_message
 
 
 @app.evaluate()
