@@ -1,23 +1,29 @@
 from flwr.app import Context
 from flwr.clientapp import ClientApp
-from flwr.common import RecordDict
+from flwr.common import Message
 
 app = ClientApp()
 
 
-@app.main()
-def main(context: Context) -> None:
-    # This can be basically empty for now
-    print("Federated client app started (stub).")
-
-
 @app.train()
-def train(context: Context) -> RecordDict:
-    # Minimal no-op implementation so Flower can import it
-    return RecordDict()
+def train(message: Message, context: Context) -> Message:
+    """
+    Temporary stub train function.
+    """
+    print("Stub train() called")
+    print("Incoming message_type:", message)
+
+    # for now, just echo the content back unchanged
+    return Message(message.content, reply_to=message)
 
 
 @app.evaluate()
-def evaluate(context: Context) -> RecordDict:
-    # Minimal no-op implementation
-    return RecordDict()
+def evaluate(message: Message, context: Context) -> Message:
+    """
+    Temporary stub evaluate function.
+    """
+    print("Stub evaluate() called")
+    print("Incoming message_type:", message)
+
+    # echo the content back as well
+    return Message(message.content, reply_to=message)
