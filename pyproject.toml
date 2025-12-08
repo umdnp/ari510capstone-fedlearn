@@ -1,5 +1,5 @@
 [project]
-name = "ari510capstone-fedlearn"
+name = "fedlearn"
 description = "ARI 510 Capstone - Federated Learning"
 version = "0.1.0"
 requires-python = ">=3.12,<4.0"

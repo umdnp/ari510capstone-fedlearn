@@ -20,7 +20,7 @@ app = ServerApp()
 
 print("DEBUG 2: After defining the app object. App should run now.")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CONFIG_DIR = PROJECT_ROOT / "configs"
 MODEL_PATH = CONFIG_DIR / "final_model.pkl"
 
