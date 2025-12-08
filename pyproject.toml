@@ -18,8 +18,8 @@ publisher = "umich"
 name = "ari510capstone-fedlearn"
 
 [tool.flwr.app.components]
-clientapp = "fedlearn.federated.client:app"
-serverapp = "fedlearn.federated.server:app"
+clientapp = "fedlearn.federated.client_app:app"
+serverapp = "fedlearn.federated.server_app:app"
 
 [tool.flwr.app.config]
 #ServerApp
@@ -28,3 +28,10 @@ penalty = "l2"
 local-epochs = 1
 fraction-train = 1.0
 fraction-evaluate = 1.0
+
+[tool.flwr.federations]
+default = "local-simulation"
+
+[tool.flwr.federations.local-simulation]
+# how many simulated clients (SuperNodes)
+options.num-supernodes = 3
