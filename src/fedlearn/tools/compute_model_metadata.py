@@ -23,7 +23,7 @@ import duckdb
 import joblib
 import numpy as np
 
-from fedlearn.preprocessing import build_preprocessor
+from fedlearn.common.preprocessing import build_preprocessor
 
 # Constants
 
