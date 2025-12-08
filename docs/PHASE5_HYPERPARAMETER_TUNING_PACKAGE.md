@@ -173,8 +173,7 @@ LogisticRegression(
 ### Step 1: Review Current Performance
 Make sure you understand the baseline performance from PHASE 3:
 ```bash
-cd src
-python centralized_models.py
+python -m fedlearn.centralized.centralized_models
 ```
 
 ### Step 2: Run Hyperparameter Tuning Notebook
@@ -204,6 +203,8 @@ After running the notebook:
 
 Replace the old parameters with the best parameters from the tuning results.
 
+**Note**: After directory restructure, the file is now located at `src/fedlearn/centralized/centralized_models.py`
+
 **Example**:
 If tuning found these best parameters for Random Forest:
 ```python
@@ -215,7 +216,7 @@ If tuning found these best parameters for Random Forest:
 }
 ```
 
-Update `src/centralized_models.py`:
+Update `src/fedlearn/centralized/centralized_models.py`:
 ```python
 RF = Pipeline([
     ("preprocessor", build_preprocessor(X)),
@@ -235,8 +236,7 @@ RF = Pipeline([
 
 After updating parameters, run:
 ```bash
-cd src
-python centralized_models.py
+python -m fedlearn.centralized.centralized_models
 ```
 
 Verify that test F1 scores match or exceed the notebook results.
@@ -299,7 +299,7 @@ Re-run hyperparameter tuning if:
    - Note improvements in project documentation
 
 2. **Update Production Code**
-   - Modify `src/centralized_models.py` with best parameters
+   - Modify `src/fedlearn/centralized/centralized_models.py` with best parameters
    - Add comments noting these are tuned parameters
 
 3. **Re-Run Full Pipeline**
@@ -361,7 +361,7 @@ Logistic Regression    0.6831
 ## 📝 Next Steps After PHASE 5
 
 ### If Tuning Succeeds:
-1. ✅ Update `centralized_models.py` with best parameters
+1. ✅ Update `src/fedlearn/centralized/centralized_models.py` with best parameters
 2. ✅ Document improvements in project notes
 3. ✅ Move to **PHASE 6: Federated Learning Implementation**
 
