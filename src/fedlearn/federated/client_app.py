@@ -12,20 +12,16 @@ def train(message: Message, context: Context) -> Message:
     # for a stub, just echo the same parameters back
     updated_arrays = incoming_arrays
 
-    metrics = MetricRecord(
-        {
-            "num-examples": 0.0,
-            "loss": 0.0,
-        }
-    )
+    metrics = MetricRecord({
+        "num-examples": 1.0,
+        "loss": 0.0,
+    })
 
     # build the reply
-    reply_content = RecordDict(
-        {
-            "arrays": updated_arrays,
-            "metrics": metrics,
-        }
-    )
+    reply_content = RecordDict({
+        "arrays": updated_arrays,
+        "metrics": metrics,
+    })
 
     reply_message = Message(
         content=reply_content,
@@ -41,7 +37,18 @@ def evaluate(message: Message, context: Context) -> Message:
     Temporary stub evaluate function.
     """
     print("Stub evaluate() called")
-    print("Incoming message_type:", message)
 
-    # echo the content back as well
-    return Message(message.content, reply_to=message)
+    metrics = MetricRecord({
+        "num-examples": 1.0,  # again, must be > 0
+        "loss": 0.0,
+        "accuracy": 0.0,
+    })
+
+    reply_content = RecordDict({
+        "metrics": metrics,
+    })
+
+    return Message(
+        content=reply_content,
+        reply_to=message,
+    )
