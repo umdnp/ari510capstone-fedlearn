@@ -23,7 +23,7 @@ import duckdb
 import joblib
 import numpy as np
 
-from fedlearn.common.preprocessing import build_preprocessor
+from fedlearn.common.preprocessing import build_preprocessor, build_preprocessor_dynamically
 
 # Constants
 
@@ -66,7 +66,8 @@ def main():
 
     # build and fit preprocessor
     print("Fitting preprocessing pipeline ...")
-    preprocessor = build_preprocessor(X)
+    #preprocessor = build_preprocessor_dynamically(X)
+    preprocessor = build_preprocessor()
     preprocessor.fit(X)
 
     # transform data to compute feature dimension

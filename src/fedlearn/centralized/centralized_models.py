@@ -7,6 +7,7 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
+from fedlearn.common.annotation import annotate_categorical_columns
 from fedlearn.common.evaluation import evaluate_model
 from fedlearn.common.preprocessing import build_preprocessor
 
@@ -22,13 +23,16 @@ df = conn.execute(f"SELECT * FROM {VIEW_NAME}").df()
 # normalize pandas.NA -> np.nan so sklearn imputers are happy
 df = df.where(df.notna(), np.nan)
 
+# ensure categorical columns have right categories
+df = annotate_categorical_columns(df)
+
 # target and feature selection
 y = df["prolonged_stay"]
 X = df.drop(columns=["patientunitstayid", "los_days", "prolonged_stay", "apacheadmissiondx"])
 
 # logistic regression model
 logreg = Pipeline([
-    ("preprocessor", build_preprocessor(X)),
+    ("preprocessor", build_preprocessor()),
     ("classifier", LogisticRegression(
         max_iter=1000,
         n_jobs=-1,
@@ -40,7 +44,7 @@ logreg = Pipeline([
 
 # random forest model
 RF = Pipeline([
-    ("preprocessor", build_preprocessor(X)),
+    ("preprocessor", build_preprocessor()),
     ("classifier", RandomForestClassifier(
         n_estimators=100,
         max_depth=10,
@@ -54,7 +58,7 @@ RF = Pipeline([
 
 # gradient boosting model
 GB = Pipeline([
-    ("preprocessor", build_preprocessor(X)),
+    ("preprocessor", build_preprocessor()),
     ("classifier", GradientBoostingClassifier(
         n_estimators=100,
         max_depth=5,
@@ -67,7 +71,7 @@ GB = Pipeline([
 
 # sgd classifier (supports partial_fit for federated learning)
 SGD = Pipeline([
-    ("preprocessor", build_preprocessor(X)),
+    ("preprocessor", build_preprocessor()),
     ("classifier", SGDClassifier(
         loss="log_loss",
         penalty="l2",
