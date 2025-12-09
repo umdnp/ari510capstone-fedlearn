@@ -1,0 +1,12 @@
+Model,Parameter,Value
+Random Forest,classifier__max_depth,15
+Random Forest,classifier__min_samples_leaf,5
+Random Forest,classifier__min_samples_split,10
+Random Forest,classifier__n_estimators,200
+Gradient Boosting,classifier__subsample,0.9
+Gradient Boosting,classifier__n_estimators,200
+Gradient Boosting,classifier__max_depth,7
+Gradient Boosting,classifier__learning_rate,0.1
+Logistic Regression,classifier__C,0.01
+Logistic Regression,classifier__penalty,l2
+Logistic Regression,classifier__solver,liblinear
