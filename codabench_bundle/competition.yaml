@@ -1,0 +1,151 @@
+title: "ICU Prolonged Stay Prediction Challenge"
+description: |
+  Predict whether ICU patients will have a prolonged stay (>3 days) based on
+  admission data from the eICU Collaborative Research Database demo dataset.
+
+  This challenge uses real-world clinical data to build machine learning models
+  that can help healthcare providers anticipate resource needs and improve
+  patient care planning.
+
+  Competition organized by Jamie O. and Jim P.
+  (University of Michigan-Flint, ARI 510 - Fall 2025)
+
+# Competition information
+version: 2
+image: logo.png
+
+# Documentation pages
+pages:
+  - title: Overview
+    file: pages/overview.md
+  - title: Data
+    file: pages/data.md
+  - title: Evaluation
+    file: pages/evaluation.md
+
+# Task information
+tasks:
+  - index: 0
+    name: "Prolonged ICU Stay Prediction"
+    description: "Binary classification task to predict prolonged ICU stays using clinical features"
+    input_data: public_data.zip
+    reference_data: reference_data.zip
+    scoring_program: scoring_program.zip
+
+# Solutions (starting kits)
+solutions:
+  - index: 0
+    tasks:
+      - 0
+    path: starting_kit.zip
+
+# Phases
+phases:
+  - name: "Development Phase"
+    description: "Public leaderboard phase where participants can submit predictions and receive immediate feedback. Maximum 5 submissions per day."
+    start: 12-9-2025
+    end: 1-14-2026
+    max_submissions_per_day: 5
+    max_submissions: 100
+    execution_time_limit: 300
+    tasks:
+      - 0
+
+  - name: "Final Phase"
+    description: "Final evaluation phase. Select your best 2 submissions from development phase."
+    start: 1-15-2026
+    end: 12-31-2026
+    max_submissions: 2
+    execution_time_limit: 300
+    tasks:
+      - 0
+
+# Leaderboards
+leaderboards:
+  - title: "Main Leaderboard"
+    key: "main"
+    columns:
+      - title: "F1 (Macro)"
+        key: "f1_macro"
+        index: 0
+        sorting: "desc"
+      - title: "Accuracy"
+        key: "accuracy"
+        index: 1
+        sorting: "desc"
+      - title: "Precision (Macro)"
+        key: "precision_macro"
+        index: 2
+        sorting: "desc"
+      - title: "Recall (Macro)"
+        key: "recall_macro"
+        index: 3
+        sorting: "desc"
+
+# Terms and conditions
+terms: pages/terms.md
+
+# HTML description (shown on competition page)
+html_description: |
+  <h2>Challenge Overview</h2>
+
+  <p>
+  Predicting ICU length of stay is crucial for resource allocation, care planning,
+  and improving patient outcomes. This competition challenges you to build machine
+  learning models that predict whether patients will have a prolonged ICU stay
+  (>3 days) based on clinical data available at admission.
+  </p>
+
+  <h3>Dataset</h3>
+
+  <ul>
+    <li><strong>Source:</strong> eICU Collaborative Research Database (demo version)</li>
+    <li><strong>Training samples:</strong> 1,512 ICU stays with labels</li>
+    <li><strong>Test samples:</strong> 1,008 ICU stays (labels hidden)</li>
+    <li><strong>Features:</strong> 80+ clinical features</li>
+    <li><strong>Class distribution:</strong> 78% not prolonged, 22% prolonged</li>
+  </ul>
+
+  <h3>Features Include</h3>
+
+  <ul>
+    <li><strong>Demographics:</strong> age, gender, ethnicity, admission weight</li>
+    <li><strong>Vital signs:</strong> heart rate, blood pressure, temperature, oxygen saturation</li>
+    <li><strong>Laboratory values:</strong> WBC, creatinine, glucose, electrolytes, etc.</li>
+    <li><strong>Clinical scores:</strong> APACHE scores, mortality predictions</li>
+  </ul>
+
+  <h3>Evaluation</h3>
+
+  <p>
+  Submissions are ranked by <strong>F1 Score (macro-averaged)</strong>, which
+  gives equal weight to both classes. This is appropriate for imbalanced medical
+  datasets where both sensitivity (catching prolonged stays) and specificity
+  (not over-predicting) are important.
+  </p>
+
+  <h3>Baseline</h3>
+
+  <p>
+  A simple Logistic Regression baseline achieves <strong>F1 = 0.7547</strong> (test set). Can you beat it?
+  </p>
+
+  <h3>Getting Started</h3>
+
+  <ol>
+    <li>Download the starting kit (baseline notebook + sample submission)</li>
+    <li>Explore the training data and baseline approach</li>
+    <li>Build your own model</li>
+    <li>Submit predictions on the test set</li>
+    <li>See your score on the leaderboard!</li>
+  </ol>
+
+  <h3>Resources</h3>
+
+  <ul>
+    <li><a href="https://physionet.org/content/eicu-crd-demo/2.0.1/">eICU Demo Dataset</a></li>
+    <li><a href="https://github.com/umdnp/ari510capstone-fedlearn">Project Repository</a></li>
+  </ul>
+
+# Contact information
+contact_email: "nobacy1364@spicysoda.com"
