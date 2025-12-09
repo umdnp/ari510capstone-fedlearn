@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import duckdb
+import joblib
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression, SGDClassifier
@@ -12,7 +13,11 @@ from fedlearn.common.evaluation import evaluate_model
 from fedlearn.common.preprocessing import build_preprocessor
 
 # Constants
+
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
+CONFIG_DIR = PROJECT_ROOT / "configs"
+CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+
 DUCKDB_PATH = PROJECT_ROOT / "data" / "duckdb" / "fedlearn.duckdb"
 VIEW_NAME = "v_features_icu_stay_clean"
 
@@ -118,3 +123,9 @@ evaluate_model("Logistic Regression", logreg, X_train, y_train, X_test, y_test)
 evaluate_model("Random Forest", RF, X_train, y_train, X_test, y_test)
 evaluate_model("Gradient Boosting", GB, X_train, y_train, X_test, y_test)
 evaluate_model("SGD Classifier", SGD, X_train, y_train, X_test, y_test)
+
+print(f"\nSaving models to {CONFIG_DIR}")
+joblib.dump(logreg, CONFIG_DIR / "centralized_logreg.pkl")
+joblib.dump(RF, CONFIG_DIR / "centralized_rf.pkl")
+joblib.dump(GB, CONFIG_DIR / "centralized_gb.pkl")
+joblib.dump(SGD, CONFIG_DIR / "centralized_sgd.pkl")

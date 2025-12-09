@@ -20,7 +20,7 @@ app = ServerApp()
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CONFIG_DIR = PROJECT_ROOT / "configs"
-MODEL_PATH = CONFIG_DIR / "final_model.pkl"
+MODEL_PATH = CONFIG_DIR / "federated_sgd.pkl"
 
 
 @app.main()

@@ -13,6 +13,7 @@ ipykernel==7.1.0
 jupyterlab==4.5.0
 flwr[simulation]==1.24.0
 scikit-learn==1.7.2
+streamlit==1.52.1
 torch==2.9.1
 
 # data viz
