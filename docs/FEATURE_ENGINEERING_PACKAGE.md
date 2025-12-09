@@ -1,7 +1,7 @@
-# PHASE 4: Advanced Feature Engineering Package
+# Advanced Feature Engineering Package
 
-**Created**: December 7, 2025
-**Purpose**: Improve model performance for prolonged ICU stay prediction through advanced feature engineering
+**Created**: December 7, 2025  
+**Purpose**: Improve model performance for prolonged ICU stay prediction through advanced feature engineering  
 **Current Best Model**: Random Forest with Test F1 = 0.6883
 
 ## Executive Summary
@@ -15,11 +15,11 @@ This package contains:
 
 ---
 
-## 📊 Feature Importance Analysis Results
+## Feature Importance Analysis Results
 
 **IMPORTANT DISTINCTION:**
-- 🔍 **Analysis (Section below)**: Shows importance of **EXISTING features** already in the database
-- 💡 **Recommendations (Later sections)**: Proposes **NEW features** to create based on the analysis
+- **Analysis (Section below)**: Shows importance of existing features already in the database
+- **Recommendations (Later sections)**: Proposed **NEW features** to create based on the analysis
 
 ---
 
@@ -53,17 +53,13 @@ Based on analysis from `notebooks/exploratory/09_feature_importance_analysis.ipy
 
 ---
 
-## 🎯 NEW Engineered Features (TO BE CREATED)
+## NEW Engineered Features (TO BE CREATED)
 
 **IMPORTANT**: These features do NOT exist yet. They are recommendations based on:
 1. The importance analysis of EXISTING features (above)
 2. Clinical domain knowledge (validated ICU severity scores)
 3. Feature engineering best practices (ratios, interactions, composites)
 
-**Workflow**:
-- ✅ **Step 1 (DONE)**: Analyzed existing features → Found Interventions, APACHE, Vitals are important
-- 📝 **Step 2 (THIS SECTION)**: Recommend NEW features to create based on those insights
-- ⏳ **Step 3 (JIM'S WORK)**: Implement NEW features in SQL → Test model performance
 
 ---
 
@@ -136,7 +132,7 @@ Based on analysis from `notebooks/exploratory/09_feature_importance_analysis.ipy
 
 ---
 
-## 📁 Package Contents
+## Package Contents
 
 ### 1. Analysis Notebook
 **File**: `notebooks/exploratory/09_feature_importance_analysis.ipynb`
@@ -235,7 +231,7 @@ After adding features, re-run `09_feature_importance_analysis.ipynb` to see:
 
 ---
 
-## ⚠️ Important Considerations
+## Important Considerations
 
 ### 1. Data Quality
 - Some features depend on fields that may be missing (e.g., `apache_pao2`, `apache_fio2`)
@@ -260,7 +256,7 @@ After adding features, re-run `09_feature_importance_analysis.ipynb` to see:
 
 ---
 
-## 📈 Expected Performance Improvements
+## Expected Performance Improvements
 
 ### Best Case Scenario
 - **Random Forest**: Test F1 = 0.72 (+4.8%)
@@ -280,7 +276,7 @@ After adding features, re-run `09_feature_importance_analysis.ipynb` to see:
 
 ---
 
-## 🔄 Iteration Strategy
+## Iteration Strategy
 
 ### If Performance Improves:
 1. Keep all features
@@ -299,7 +295,7 @@ After adding features, re-run `09_feature_importance_analysis.ipynb` to see:
 
 ---
 
-## 📝 Next Steps After Implementation
+## Next Steps After Implementation
 
 1. **Run models** with new features
 2. **Compare results** to baseline (current F1 = 0.6883)
@@ -309,7 +305,7 @@ After adding features, re-run `09_feature_importance_analysis.ipynb` to see:
 
 ---
 
-## 🤝 Questions or Issues?
+## Questions or Issues?
 
 If you encounter any issues:
 1. Check SQL syntax in views
@@ -319,7 +315,7 @@ If you encounter any issues:
 
 ---
 
-## 📚 References
+## References
 
 - **SOFA Score**: Vincent JL, et al. JAMA. 1996;276(9):707-713
 - **qSOFA**: Seymour CW, et al. JAMA. 2016;315(8):762-774
@@ -327,5 +323,3 @@ If you encounter any issues:
 - **Shock Index**: Birkhahn RH, et al. Acad Emerg Med. 2005;12(6):504-508
 
 ---
-
-**End of PHASE 4 Package**

@@ -1,7 +1,7 @@
-# PHASE 5: Hyperparameter Tuning Package
+# Hyperparameter Tuning Package
 
-**Created**: December 7, 2025
-**Purpose**: Optimize model hyperparameters to maximize prediction performance
+**Created**: December 7, 2025  
+**Purpose**: Optimize model hyperparameters to maximize prediction performance  
 **Current Best Model**: Random Forest with Test F1 = 0.6883
 
 ## Executive Summary
@@ -15,9 +15,9 @@ This package contains:
 
 ---
 
-## 📊 Current Model Performance (Baseline)
+## Current Model Performance (Baseline)
 
-**From PHASE 3 (before tuning)**:
+**From data before tuning**:
 
 | Model | Test F1 Score | Train-Test Gap | Status |
 |-------|---------------|----------------|--------|
@@ -34,7 +34,7 @@ This package contains:
 
 ---
 
-## 🎯 Expected Performance Improvements
+## Expected Performance Improvements
 
 ### Realistic Targets:
 
@@ -54,7 +54,7 @@ This package contains:
 
 ---
 
-## 📁 Package Contents
+## Package Contents
 
 ### 1. Hyperparameter Tuning Notebook
 **File**: `notebooks/exploratory/10_hyperparameter_tuning.ipynb`
@@ -77,11 +77,11 @@ This package contains:
 
 ---
 
-## 🔧 Hyperparameter Grids
+## Hyperparameter Grids
 
 ### Random Forest Parameters
 
-**Current (PHASE 3)**:
+**Current**:
 ```python
 RandomForestClassifier(
     n_estimators=100,
@@ -111,7 +111,7 @@ RandomForestClassifier(
 
 ### Gradient Boosting Parameters
 
-**Current (PHASE 3)**:
+**Current**:
 ```python
 GradientBoostingClassifier(
     n_estimators=100,
@@ -141,7 +141,7 @@ GradientBoostingClassifier(
 
 ### Logistic Regression Parameters
 
-**Current (PHASE 3)**:
+**Current**:
 ```python
 LogisticRegression(
     max_iter=1000,
@@ -168,7 +168,7 @@ LogisticRegression(
 
 ---
 
-## 🛠️ Implementation Guide
+## Implementation Guide
 
 ### Step 1: Review Current Performance
 Make sure you understand the baseline performance from PHASE 3:
@@ -178,18 +178,13 @@ python -m fedlearn.centralized.centralized_models
 
 ### Step 2: Run Hyperparameter Tuning Notebook
 
-**Option A: Run All Models** (Recommended, ~1-2 hours)
+**Run All Models** (Recommended, ~1-2 hours)
 ```bash
 cd notebooks/exploratory
 jupyter notebook 10_hyperparameter_tuning.ipynb
 ```
 Run all cells sequentially.
 
-**Option B: Run Selectively** (Faster)
-Run only the highest priority models:
-1. Random Forest (HIGH priority, best current model)
-2. Gradient Boosting (HIGH priority, most room for improvement)
-3. Skip Logistic Regression initially (MEDIUM priority)
 
 ### Step 3: Analyze Results
 
@@ -243,7 +238,7 @@ Verify that test F1 scores match or exceed the notebook results.
 
 ---
 
-## ⚠️ Important Considerations
+## ⚠Important Considerations
 
 ### 1. Computational Resources
 - **Grid Search** is exhaustive but slow
@@ -263,14 +258,14 @@ Verify that test F1 scores match or exceed the notebook results.
 
 ### 4. When to Re-Tune
 Re-run hyperparameter tuning if:
-- New features are added (PHASE 4)
+- New features are added 
 - Data distribution changes significantly
 - Model performance degrades over time
 - Switching to a different metric (e.g., from F1 to AUC)
 
 ---
 
-## 📈 Interpreting Results
+## Interpreting Results
 
 ### Good Signs:
 - ✅ Validation F1 > Baseline F1 (improvement)
@@ -290,7 +285,7 @@ Re-run hyperparameter tuning if:
 
 ---
 
-## 🔄 Integration Workflow
+## Integration Workflow
 
 ### After Successful Tuning:
 
@@ -312,7 +307,7 @@ Re-run hyperparameter tuning if:
 
 ---
 
-## 📊 Expected Notebook Output
+## Expected Notebook Output
 
 After running the notebook, you should see:
 
@@ -336,7 +331,7 @@ Logistic Regression    0.6831
 
 ---
 
-## 🎓 Hyperparameter Tuning Best Practices
+## Hyperparameter Tuning Best Practices
 
 ### 1. Start Coarse, Then Refine
 - First pass: Wide range, coarse grid (e.g., [10, 100, 1000])
@@ -358,7 +353,7 @@ Logistic Regression    0.6831
 
 ---
 
-## 📝 Next Steps After PHASE 5
+## Next Steps 
 
 ### If Tuning Succeeds:
 1. ✅ Update `src/fedlearn/centralized/centralized_models.py` with best parameters
@@ -377,7 +372,7 @@ Logistic Regression    0.6831
 
 ---
 
-## 🤝 Questions or Issues?
+## Questions or Issues?
 
 ### Common Issues:
 
@@ -395,7 +390,7 @@ A: Some variance is normal. Large differences suggest overfitting to validation 
 
 ---
 
-## 📚 References
+## References
 
 - **Scikit-learn Grid Search**: https://scikit-learn.org/stable/modules/grid_search.html
 - **Random Forest Tuning Guide**: https://towardsdatascience.com/hyperparameter-tuning-the-random-forest-in-python-using-scikit-learn-28d2aa77dd74
@@ -403,4 +398,3 @@ A: Some variance is normal. Large differences suggest overfitting to validation 
 
 ---
 
-**End of PHASE 5 Package**
