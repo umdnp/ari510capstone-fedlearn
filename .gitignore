@@ -216,6 +216,10 @@ activate.bat
 # Data files - too large for git
 data/
 
+# Exception - allow these files
+!data/duckdb/fedlearn_demo.duckdb
+!data/eicu-collaborative-research-database-demo-2.0.1.7z
+
 # Model outputs and experiment results
 models/
 results/
