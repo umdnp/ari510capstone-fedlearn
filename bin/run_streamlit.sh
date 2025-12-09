@@ -5,4 +5,4 @@ export PYTHONPATH=$PROJECT_DIR/src
 
 source ${PROJECT_DIR}/activate
 
-streamlit run src/fedlearn/centralized/streamlit_app.py
+streamlit run src/fedlearn/app/streamlit_app.py
