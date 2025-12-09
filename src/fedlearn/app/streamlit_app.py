@@ -148,16 +148,20 @@ st.set_page_config(
 st.title("ICU Prolonged Stay Prediction")
 st.caption("Centralized vs Federated Learning (Flower) Demo")
 
-st.markdown(
-    """
-This app wraps your existing **trained models** in a small Streamlit UI so that
-you can:
+st.markdown("""
+This app presents the results of our **ICU prolonged stay prediction project**, where we compare
+centralized machine-learning models with a **federated learning** approach. It provides an interactive
+interface to explore model behavior, evaluate performance, and demonstrate how federated learning can
+support privacy-preserving healthcare analytics.
 
-- Compare **centralized vs federated** performance on the same held-out test set  
-- Inspect a **sample ICU stay** and see true vs predicted label  
-- Use it in your **final presentation** and report as the "Deployment" component
-"""
-)
+With this UI, you can:
+
+- Compare **centralized vs federated** model performance on the same test set  
+- Review **train/test accuracy, precision, recall, and F1** for all models side-by-side  
+- Visualize overall performance trends through a **test-accuracy bar chart**  
+- Inspect an individual ICU stay and see **true vs predicted outcomes**  
+- Explore how each model responds to the same patient case  
+""")
 
 with st.spinner("Loading data and models (cached)..."):
     models, metrics, X_test, y_test = prepare_models()
@@ -175,14 +179,12 @@ selected_metrics = metrics[selected_model_name]
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("**About this app**")
-st.sidebar.markdown(
-    """
+st.sidebar.markdown("""
 - Data: `v_features_icu_stay_clean` (DuckDB)  
 - Target: `prolonged_stay`  
 - Centralized: LogReg / RF / GB / SGD pipelines saved as `.pkl`  
-- Federated: SGDClassifier trained with Flower (`federated_sgd.pkl`, if present)
-"""
-)
+- Federated: SGDClassifier trained with Flower (`federated_sgd.pkl`)
+""")
 
 # Overall performance for selected model
 #
@@ -194,30 +196,25 @@ cols[1].metric("Test accuracy", f"{selected_metrics['test_accuracy']:.3f}")
 cols[2].metric("Test F1 (macro)", f"{selected_metrics['test_f1']:.3f}")
 cols[3].metric("Test recall (macro)", f"{selected_metrics['test_recall']:.3f}")
 
-st.markdown(
-    """
-Use the dropdown in the sidebar to switch between the centralized
-models (LogReg / RF / GB / SGD) and the federated model (if available).
-All models are evaluated on the **same** held-out test split.
-"""
-)
+st.markdown("""
+Use the dropdown in the sidebar to switch between the centralized models (LogReg / RF / GB / SGD)
+and the federated model. All models are evaluated on the **same** test split.
+""")
 
-metrics_df = pd.DataFrame(
-    {
-        "train": {
-            "accuracy": selected_metrics["train_accuracy"],
-            "precision": selected_metrics["train_precision"],
-            "recall": selected_metrics["train_recall"],
-            "f1": selected_metrics["train_f1"],
-        },
-        "test": {
-            "accuracy": selected_metrics["test_accuracy"],
-            "precision": selected_metrics["test_precision"],
-            "recall": selected_metrics["test_recall"],
-            "f1": selected_metrics["test_f1"],
-        },
-    }
-)
+metrics_df = pd.DataFrame({
+    "train": {
+        "accuracy": selected_metrics["train_accuracy"],
+        "precision": selected_metrics["train_precision"],
+        "recall": selected_metrics["train_recall"],
+        "f1": selected_metrics["train_f1"],
+    },
+    "test": {
+        "accuracy": selected_metrics["test_accuracy"],
+        "precision": selected_metrics["test_precision"],
+        "recall": selected_metrics["test_recall"],
+        "f1": selected_metrics["test_f1"],
+    },
+})
 st.dataframe(metrics_df.style.format("{:.3f}"), use_container_width=True)
 
 # Model comparison overview (all models side-by-side)
@@ -237,19 +234,17 @@ ordered_names = [m for m in base_order if m in metrics] + [
 rows = []
 for name in ordered_names:
     m = metrics[name]
-    rows.append(
-        {
-            "model": name,
-            "train_accuracy": m["train_accuracy"],
-            "test_accuracy": m["test_accuracy"],
-            "train_precision": m["train_precision"],
-            "train_recall": m["train_recall"],
-            "train_f1": m["train_f1"],
-            "test_precision": m["test_precision"],
-            "test_recall": m["test_recall"],
-            "test_f1": m["test_f1"],
-        }
-    )
+    rows.append({
+        "model": name,
+        "train_accuracy": m["train_accuracy"],
+        "test_accuracy": m["test_accuracy"],
+        "train_precision": m["train_precision"],
+        "train_recall": m["train_recall"],
+        "train_f1": m["train_f1"],
+        "test_precision": m["test_precision"],
+        "test_recall": m["test_recall"],
+        "test_f1": m["test_f1"],
+    })
 
 all_metrics_df = pd.DataFrame(rows).set_index("model")
 
@@ -306,16 +301,20 @@ c2.write(f"Predicted label: `{pred_label}`")
 if prob_msg:
     c3.write(prob_msg)
 
-st.markdown(
-    """
-In your **presentation**, you can:
+st.markdown("""
+To make the most of this app, you can:
 
-1. Move the slider to pick a patient  
-2. Show the true `prolonged_stay` label  
-3. Toggle between models in the sidebar (LogReg / RF / GB / SGD / Federated)  
-4. Discuss any differences in predictions or performance
-"""
-)
+1. Use the slider to select an individual ICU stay and explore that patient’s feature values  
+2. View the **true** `prolonged_stay` label, which indicates the actual outcome in the dataset  
+3. Compare it to the model’s **predicted** label — the model’s final decision for that patient  
+4. Examine the probability shown as `P(prolonged stay = 1)`, which represents the model’s estimated likelihood of a prolonged stay  
+   - Probabilities ≥ 0.5 result in a predicted label of **1**  
+   - Probabilities < 0.5 result in a predicted label of **0**  
+5. Switch between different models in the sidebar (LogReg / RF / GB / SGD / Federated) to see how each one performs on the same patient  
+6. Identify cases where a model is confident, uncertain, or incorrect  
+   - Example: *True label = 1*, *Predicted label = 0*, *P = 0.313* indicates the model underestimated the risk  
+7. Use these comparisons to better understand strengths, weaknesses, and performance differences between centralized and federated learning approaches  
+""")
 
 # Federated model status
 #
