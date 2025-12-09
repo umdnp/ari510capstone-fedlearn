@@ -22,7 +22,7 @@ This dataset contains the same schema as the full eICU-CRD, allowing accurate an
 4. Refer to `annotation_guidelines.docx` for full instructions.
 
 ## Purpose
-Clean, human‑defined annotations improve:
+Clean, human-defined annotations improve:
 - Model interpretability  
 - Category consistency  
 - Downstream machine learning performance  
