@@ -103,28 +103,7 @@ codabench_bundle/
 
 ## How to Use This Bundle
 
-### Option 1: Upload to Codabench (Recommended)
-
-1. **Zip the bundle**:
-   ```bash
-   cd /path/to/ari510capstone-fedlearn
-   zip -r codabench_competition.zip codabench_bundle/
-   ```
-
-2. **Upload to Codabench**:
-   - Go to https://www.codabench.org/
-   - Create account / Login
-   - Navigate to "Competitions" → "Create Competition"
-   - Upload `codabench_competition.zip`
-   - Follow the web interface prompts
-
-3. **Test submission**:
-   - Download the starting kit
-   - Run baseline notebook to generate predictions
-   - Submit `predictions.csv`
-   - Verify scoring works and leaderboard updates
-
-### Option 2: Local Testing
+### Step 1: Local Testing
 
 Test the evaluation script locally before uploading:
 
@@ -155,6 +134,27 @@ Expected output:
   "recall_macro": 0.5000
 }
 ```
+
+### Step 2: Upload to Codabench (Recommended)
+
+1. **Zip the bundle**:
+   ```bash
+   cd /path/to/ari510capstone-fedlearn
+   zip -r codabench_competition.zip codabench_bundle/
+   ```
+
+2. **Upload to Codabench**:
+   - Go to https://www.codabench.org/
+   - Create account / Login
+   - Navigate to "Competitions" → "Create Competition"
+   - Upload `codabench_competition.zip`
+   - Follow the web interface prompts
+
+3. **Test submission**:
+   - Download the starting kit
+   - Run baseline notebook to generate predictions
+   - Submit `predictions.csv`
+   - Verify scoring works and leaderboard updates
 
 ## Submission Format
 
@@ -288,5 +288,3 @@ Competition data: Open Data Commons Open Database License v1.0
 Competition code: MIT License
 
 ---
-
-**Ready to upload to Codabench!** 🚀

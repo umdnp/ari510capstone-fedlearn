@@ -1,0 +1,4 @@
+Model,Baseline F1,Tuned Val F1,Improvement,Best Params,Tuning Time (min)
+Random Forest,0.6883,0.7062235836643406,0.017923583664340548,"{'classifier__max_depth': 15, 'classifier__min_samples_leaf': 5, 'classifier__min_samples_split': 10, 'classifier__n_estimators': 200}",26.03955645831302
+Gradient Boosting,0.6811,0.6979336382782982,0.016833638278298202,"{'classifier__subsample': 0.9, 'classifier__n_estimators': 200, 'classifier__max_depth': 7, 'classifier__learning_rate': 0.1}",49.54036432343225
+Logistic Regression,0.6673,0.667975868517233,0.0006758685172330026,"{'classifier__C': 0.01, 'classifier__penalty': 'l2', 'classifier__solver': 'liblinear'}",5.016293848321463

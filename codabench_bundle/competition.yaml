@@ -1,4 +1,4 @@
-title: "ICU Prolonged Stay Prediction Challenge"
+title: "ARI 510 - ICU Prolonged Stay Prediction Challenge"
 description: |
   Predict whether ICU patients will have a prolonged stay (>3 days) based on
   admission data from the eICU Collaborative Research Database demo dataset.
@@ -12,7 +12,7 @@ description: |
 
 # Competition information
 version: 2
-image: logo.png
+image: um.jpg
 
 # Documentation pages
 pages:

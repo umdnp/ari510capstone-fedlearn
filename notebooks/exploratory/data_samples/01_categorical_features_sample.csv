@@ -1,0 +1,16 @@
+patientunitstayid,gender,ethnicity,unittype,unitadmitsource,hospitaladmitsource,admissiondx_category,numbedscategory,teachingstatus,hospital_region
+219289,female,Hispanic,CTICU,Floor,Floor,respiratory,>= 500,True,Midwest
+302963,male,Caucasian,Med-Surg ICU,Operating Room,Operating Room,other,>= 500,False,Midwest
+231014,male,Caucasian,Med-Surg ICU,Operating Room,,other,<100,False,Midwest
+944828,female,Caucasian,Med-Surg ICU,Emergency Department,Emergency Department,neurologic,,False,
+2828875,male,Caucasian,CCU-CTICU,Emergency Department,,cardiac,250 - 499,False,West
+2109455,male,Caucasian,Med-Surg ICU,PACU,PACU,other,100 - 249,False,Midwest
+1723599,male,African American,Med-Surg ICU,Operating Room,,other,100 - 249,False,Midwest
+2821041,male,Caucasian,Med-Surg ICU,Operating Room,Operating Room,other,250 - 499,False,West
+1562144,male,Caucasian,Neuro ICU,Step-Down Unit (SDU),Step-Down Unit (SDU),other,>= 500,True,Midwest
+1701437,male,Caucasian,Med-Surg ICU,Floor,,other,>= 500,True,Midwest
+1040469,female,Caucasian,CCU-CTICU,Operating Room,Emergency Department,other,>= 500,True,South
+858317,female,Caucasian,CSICU,Operating Room,Operating Room,other,>= 500,False,West
+1535342,male,Caucasian,Neuro ICU,Recovery Room,Recovery Room,trauma,>= 500,False,South
+425114,male,Caucasian,Med-Surg ICU,Emergency Department,,other,100 - 249,False,South
+2309809,female,Caucasian,Med-Surg ICU,Direct Admit,Direct Admit,sepsis,,False,

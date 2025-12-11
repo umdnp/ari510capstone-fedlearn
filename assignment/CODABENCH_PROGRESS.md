@@ -1,8 +1,7 @@
 # Codabench Competition Setup - Progress Report
 
-**Date**: December 9, 2025
-**Status**: ✅ Bundle Complete - Ready for Upload
-**Estimated Time**: ~2.5 hours (faster than planned!)
+**Date**: December 9, 2025  
+**Status**: ✅ Bundle Complete 
 
 ---
 
@@ -223,7 +222,7 @@ All metrics displayed on competition leaderboard.
 
 **Actual** (demo dataset):
 - **F1 = 0.7547** 🎉
-- **14% better than expected!**
+- **14% better than goal**
 
 **Why Better Performance?**
 1. Demo dataset is cleaner/more curated
@@ -238,54 +237,7 @@ From `BENCHMARK_DOCUMENTATION.md` (full eICU, 199K stays):
 - Logistic Regression: F1 = 0.6598
 - SGD Classifier: F1 = 0.6040
 
-**Demo baseline (2.5K stays): F1 = 0.7547** - outperforms even Random Forest on full dataset!
-
----
-
-## Next Steps
-
-### Option 1: Upload to Codabench Now
-
-**Steps**:
-1. Create zip file:
-   ```bash
-   cd /home/jamieontiveros/Development/university_michigan/ari510capstone-fedlearn
-   zip -r codabench_competition.zip codabench_bundle/
-   ```
-
-2. Upload to Codabench:
-   - Go to https://www.codabench.org/
-   - Create account / Login
-   - Navigate to "Competitions" → "Create Competition"
-   - Upload `codabench_competition.zip`
-   - Configure additional settings (logo, dates, etc.)
-
-3. Test submission:
-   - Download starting kit
-   - Run baseline notebook
-   - Submit predictions
-   - Verify scoring and leaderboard
-
-**Estimated Time**: 30-45 minutes
-
-### Option 2: Test Locally First (Recommended)
-
-**Steps**:
-1. Run baseline notebook locally
-2. Generate predictions
-3. Test evaluation script
-4. Verify all metrics compute correctly
-5. Then upload to Codabench
-
-**Estimated Time**: 1 hour (includes testing)
-
-### Option 3: Defer to Later
-
-**Considerations**:
-- Bundle is complete and ready
-- Can upload anytime before final report deadline
-- May want to test baseline performance first
-- Could add optional logo/banner images
+**Demo baseline (2.5K stays): F1 = 0.7547** - outperforms even Random Forest on full dataset
 
 ---
 
@@ -377,81 +329,25 @@ All operations are fast enough for repeated testing and refinement.
 ## Competition Success Criteria
 
 ### Minimum Viable Product (MVP)
-✅ Competition bundle created
-✅ Evaluation script works
-✅ Baseline achieves excellent performance (F1 = 0.7547, better than expected!)
-✅ Documentation complete
-✅ Ready for upload
-
-### Nice-to-Have (Optional)
-⏳ Upload to Codabench (pending)
-⏳ Test submission from participant perspective
-⏳ Add competition logo/banner
-⏳ Publicize to ML community
-
-### Final Report Requirements
-✅ Benchmark section includes Codabench setup
-✅ Dataset description complete
-✅ Evaluation metrics defined
-✅ Baseline results documented
-⏳ Live Codabench link (optional - can document bundle instead)
+✅ Competition bundle created  
+✅ Evaluation script works  
+✅ Baseline achieves excellent performance (F1 = 0.7547, better than expected!)  
+✅ Documentation complete  
 
 ---
 
-## Timeline Summary
-
-| Task | Planned Time | Actual Time | Status |
-|------|-------------|-------------|--------|
-| Download demo dataset | 15 min | 10 min | ✅ Done |
-| Create processing script | 30-45 min | 40 min | ✅ Done |
-| Create train/test splits | 15 min | 10 min | ✅ Done |
-| Create evaluation script | 30 min | 20 min | ✅ Done |
-| Create starter notebook | 45 min | 30 min | ✅ Done |
-| Package competition bundle | 20 min | 15 min | ✅ Done |
-| Upload to Codabench + test | 30-45 min | TBD | ⏳ Pending |
-| **Total** | **~3-4 hours** | **~2.5 hours** | **Ahead of schedule!** |
-
----
-
-## Recommendations
-
-### For Final Report
-1. Include Codabench bundle in appendix
-2. Reference bundle structure and files
-3. Cite demo dataset properly
-4. Explain evaluation metrics choice
-5. Compare demo vs. full dataset limitations
-
-### For Competition Upload
-1. Test baseline notebook locally first
-2. Verify predictions format matches exactly
-3. Upload to Codabench during off-peak hours
-4. Create test account to submit as participant
-5. Monitor leaderboard for any issues
-
-### For Future Improvements
-1. Add second baseline (Random Forest) to starting kit
-2. Create video walkthrough of baseline notebook
-3. Add feature importance analysis to notebook
-4. Provide data exploration notebook separately
-5. Consider adding bonus challenges (e.g., best F1 on minority class)
-
----
 
 ## Contact & Resources
 
-**Team Members**: Jamie Ontiveros, Jim Prantzalos
-**Institution**: University of Michigan-Flint
-**Course**: ARI 510 (Fall 2025)
-**Repository**: https://github.com/umdnp/ari510capstone-fedlearn
+**Team Members**: Jamie Ontiveros, Jim Prantzalos  
+**Institution**: University of Michigan-Flint  
+**Course**: ARI 510 (Fall 2025)  
+**Repository**: https://github.com/umdnp/ari510capstone-fedlearn  
 
-**Resources**:
-- eICU Demo Dataset: https://physionet.org/content/eicu-crd-demo/2.0.1/
-- Codabench Platform: https://www.codabench.org/
-- Competition Bundle: `codabench_bundle/`
+**Resources**:  
+- eICU Demo Dataset: https://physionet.org/content/eicu-crd-demo/2.0.1/  
+- Codabench Project: https://www.codabench.org/competitions/12116/
+- Competition Bundle: `codabench_bundle/`  
 
 ---
 
-**Status**: ✅ **READY FOR UPLOAD** 🚀
-
-All components complete. Bundle can be uploaded to Codabench at any time.
