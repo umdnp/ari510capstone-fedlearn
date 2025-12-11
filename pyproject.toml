@@ -27,9 +27,9 @@ serverapp = "fedlearn.federated.server_app:app"
 
 [tool.flwr.app.config]
 #ServerApp
-num-server-rounds = 5
+num-server-rounds = 20
 penalty = "l2"
-local-epochs = 1
+local-epochs = 500
 fraction-train = 1.0
 fraction-evaluate = 1.0
 
